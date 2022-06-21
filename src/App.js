@@ -1,11 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
 // import your arrays here
+import PlanetsList from './PlanetsList.js';
+import { getPlanets } from './services/fetch-utils.js';
+import { useEffect, useState } from 'react';
+
 
 function App() {
+  const [planets, setPlanets] = useState([]);
+
+  useEffect(() => {
+    async function fetchPlanetsData() {
+      const data = await getPlanets();
+      setPlanets(data);
+    }
+    fetchPlanetsData();
+  }, []);
+
   return (
     <div className="App">
-        Render all your lists here. Pass the arrays as props.
+      <PlanetsList planets={ planets } />
     </div>
   );
 }
