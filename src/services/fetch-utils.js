@@ -14,3 +14,8 @@ export async function getCars() {
   const response = await client.from('Cars').select('*');
   return response.body;
 }
+
+export async function getJuices() {
+  const response = await client.from('Juices').select('*');
+  return response.body;
+}
