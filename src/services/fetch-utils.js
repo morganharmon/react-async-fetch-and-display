@@ -9,3 +9,8 @@ export async function getAnimals() {
   const response = await client.from('Animals').select('*');
   return response.body;
 }
+
+export async function getCars() {
+  const response = await client.from('Cars').select('*');
+  return response.body;
+}

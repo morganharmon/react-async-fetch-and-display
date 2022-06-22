@@ -1,13 +1,15 @@
 import './App.css';
 // import your arrays here
-import PlanetsList from './PlanetsList.js';
-import { getPlanets, getAnimals } from './services/fetch-utils.js';
+import { getPlanets, getAnimals, getCars } from './services/fetch-utils.js';
 import { useEffect, useState } from 'react';
+import PlanetsList from './PlanetsList.js';
 import AnimalsList from './AnimalsList.js';
+import CarsList from './CarsList.js';
 
 function App() {
   const [planets, setPlanets] = useState([]);
   const [animals, setAnimals] = useState([]);
+  const [cars, setCars] = useState([]);
 
   useEffect(() => {
     async function fetchPlanetsData() {
@@ -24,11 +26,20 @@ function App() {
     }
     fetchAnimalsData();
   }, []);
-
+  
+  useEffect(() => {
+    async function fetchCarsData() {
+      const data = await getCars();
+      setCars(data);
+    }
+    fetchCarsData();
+  }, []);
+  
   return (
     <div className="App">
       <PlanetsList planets={ planets } />
       <AnimalsList animals={ animals } />
+      <CarsList cars={ cars } />
     </div>
   );
 }
